@@ -1,0 +1,18 @@
+body {
+    margin: 0;
+}
+canvas {
+    image-rendering: pixelated;
+}
+#info {
+    position: absolute;
+    top: 0;
+    right: 99%;
+    background-color: rgba(25,25,25,0.5);
+    transition: all 0.2s;
+    width: 5%;
+    padding-left: 500px;
+}
+#info:hover {
+    right: 90%
+}
