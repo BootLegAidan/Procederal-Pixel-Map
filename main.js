@@ -87,9 +87,9 @@ function darkenColor(color, percent) {
 
     return newColor;
 }
-function update() {
-    let needsRedraw = false
-    let needsResize = false
+function update(forceRedraw = false, forceResize = false) {
+    let needsRedraw = (forceRedraw === true) // For some reason, forceRedraw is being set to random really high numbers. I have no clue why, but this seems to be the solution
+    let needsResize = forceResize
     if (keysPressed.w) {
         cfg.position.y-=1/cfg.zoom
         needsRedraw = true
@@ -138,6 +138,7 @@ function update() {
         needsRedraw = true
     }
     if (needsRedraw) { 
+        console.log('redrew');
         let drawTime = draw()
         infoBox.innerHTML = `
             x: ${Math.floor(cfg.position.x*10)/10}<br>
@@ -154,9 +155,11 @@ function update() {
     if (needsResize) { 
         resizeCanvas()
         draw()
+        console.log('redrew');
     }
     requestAnimationFrame(update)
 }
 
 resizeCanvas()
 update()
+
